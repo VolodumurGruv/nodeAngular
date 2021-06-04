@@ -1,15 +1,47 @@
-<nav>
-  <ul>
-    <li>
-      <a [routerLink]="['/']">Home</a>
-    </li>
-    <li>
-      <a [routerLink]="['/courses']">Courses</a>
-    </li>
-    <li><a [routerLink]="['/create']">Create</a></li>
-    <li>
-      <a [routerLink]="['/edit/:id']">Edit</a>
-    </li>
-  </ul>
-</nav>
-<router-outlet></router-outlet>
+<mat-drawer-container hasBackdrop="false" autosize>
+  <mat-drawer #menu mode="side">
+    <mat-list role="list">
+      <mat-list-item>
+        <a matRipple [routerLink]="['/']">Home</a>
+      </mat-list-item>
+      <mat-list-item mat-button [matMenuTriggerFor]="courses">
+        <a matRipple [routerLink]="['/courses']">Course</a>
+      </mat-list-item>
+      <mat-menu #courses yPosition="above">
+        <mat-list-item>
+          <a [routerLink]="['/course/:id']">HTML</a>
+        </mat-list-item>
+      </mat-menu>
+      <mat-list-item>
+        <a matRipple [routerLink]="['/create']">Create</a>
+      </mat-list-item>
+      <div *ngIf="!isLogin; else login">
+        <mat-list-item>
+          <a matRipple [routerLink]="['/login']" (click)="isLogin = !isLogin"
+            >Log in</a
+          >
+        </mat-list-item>
+        <mat-list-item>
+          <a matRipple [routerLink]="['/signup']">Sign up</a>
+        </mat-list-item>
+      </div>
+      <ng-template #login>
+        <mat-list-item>
+          <a matRipple [routerLink]="['/logout']" (click)="isLogin = !isLogin"
+            >Log out</a
+          >
+        </mat-list-item>
+      </ng-template>
+    </mat-list>
+  </mat-drawer>
+  <button
+    class="btn-toggle"
+    mat-icon-button
+    type="button"
+    aria-label="menu"
+    (click)="menu.toggle()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-drawer-container>
+<router-outlet> </router-outlet>
