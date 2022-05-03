@@ -1,34 +1,33 @@
 const { Router } = require("express");
 const router = Router();
-const cors = require("cors");
-const User = require("../data/user");
-const { readBufferWithDetectedEncoding } = require("tslint/lib/utils");
+const Category = require("../data/user");
 
 router.get("/", async (req, res) => {
-  const allUsers = await User.find((err, users) => {
+  const allProducts = await Category.find((err, product) => {
     if (err) throw err;
-    return users;
+    return product;
   });
 
-  res.json(allUsers);
+  res.json(allProducts);
 });
 
 router
   .route("/create")
   .get(async (req, res) => {
-    const user = req.body;
-    console.log(user);
+    // const product = req.body;
+    // console.log(product);
     res.send("It works");
   })
   .post(async (req, res) => {
-    const user = req.body;
-    const users = new User(user);
-
+    const product = req.body;
+    console.log(product);
+    const products = new Category(product);
+    console.log(products);
     try {
-      await users.save();
-      res.redirect("/courses");
+      await products.save();
+      res.status(200).send({ status: "Ok" });
     } catch (e) {
-      console.log(e);
+      console.log(e, "node error");
     }
   });
 

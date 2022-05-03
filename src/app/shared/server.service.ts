@@ -4,7 +4,7 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import { User } from './interfaces';
+import { Category } from './interfaces';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
@@ -12,10 +12,10 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ServerService {
-  private url = 'http://localhost:3000/api/';
+  private url = 'http://localhost:3200/api';
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<User[]> {
+  getAll(): Observable<Category[]> {
     return this.http
       .get(this.url, {
         headers: {
@@ -37,11 +37,20 @@ export class ServerService {
       );
   }
 
-  create(user: User): Observable<User[]> {
+  getById(id: string): Observable<Category> {
+    return this.http.get<Category>(`${this.url}/${id}.json`).pipe(
+      map((prod: Category) => {
+        console.log({ ...prod });
+        return { ...prod };
+      })
+    );
+  }
+
+  create(category: Category): Observable<Category[]> {
     const myHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.http
-      .post<User[]>(`${this.url}create`, JSON.stringify(user), {
+      .post<Category[]>(`${this.url}/create`, JSON.stringify(category), {
         headers: myHeaders,
       })
       .pipe(catchError(this.handleError));
@@ -51,12 +60,12 @@ export class ServerService {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       // Handle client error
-      errorMessage = error.error.message;
+      errorMessage = error.error.message + 'handle client error Ang';
     } else {
       // Handle server error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message} handle server error Ang`;
     }
-    console.log(errorMessage);
+    console.log(errorMessage, 'Handle ang');
     return throwError(errorMessage);
   }
 }

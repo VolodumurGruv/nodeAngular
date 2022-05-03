@@ -20,6 +20,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CourseIdComponent } from './course-id/course-id.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,7 @@ import { MatCardModule } from '@angular/material/card';
     EditComponent,
     CoursesComponent,
     CourseComponent,
+    CourseIdComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -46,6 +50,8 @@ import { MatCardModule } from '@angular/material/card';
     MatIconModule,
     MatToolbarModule,
     MatCardModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

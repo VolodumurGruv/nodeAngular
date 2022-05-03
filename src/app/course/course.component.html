@@ -1,1 +1,40 @@
-<p>course works!</p>
+<div class="card-div" *ngIf="products$ | async as products; else loading">
+  <mat-card
+    class="courses-card"
+    *ngFor="let product of products"
+    [product]="product"
+  >
+    <mat-card-header>
+      <h1>{{ product.price | currency: "USD" }}</h1>
+      <mat-card-title> {{ product.product }} </mat-card-title>
+      <mat-card-subtitle> {{ product.name }} </mat-card-subtitle>
+    </mat-card-header>
+    <img class="card-img" mat-card-image src="{{ product.img }}" />
+    <mat-card-content>
+      <p>{{ product.description }}</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-fab color="primary">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+      <button
+        mat-fab
+        color="primary"
+        [id]="product._id"
+        (click)="onPageView(product._id)"
+      >
+        <mat-icon>pageview</mat-icon>
+      </button>
+      <div *ngIf="false">
+        <button mat-fab color="warn">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-fab color="warn">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<ng-template #loading> <mat-spinner></mat-spinner> </ng-template>

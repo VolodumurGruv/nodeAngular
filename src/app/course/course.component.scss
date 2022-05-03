@@ -1,0 +1,25 @@
+.courses-card {
+  max-width: 250px;
+}
+
+.card-img {
+  width: 150px;
+}
+
+mat-card {
+  margin: 10px;
+  text-align: center;
+  h1 {
+    float: right;
+  }
+}
+
+.card-div {
+  display: flex;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: space-around;
+  align-content: flex-end;
+}

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CourseIdComponent } from './course-id/course-id.component';
 import { CourseComponent } from './course/course.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CreateComponent } from './create/create.component';
@@ -14,11 +15,11 @@ const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       { path: '', redirectTo: '/', pathMatch: 'full' },
-      { path: '', component: HomePageComponent },
+      { path: 'home', component: HomePageComponent },
       { path: 'courses', component: CoursesComponent },
-      { path: 'courses/:id', component: CourseComponent },
       { path: 'create', component: CreateComponent },
       { path: 'edit/:id', component: EditComponent },
+      { path: 'course/:id', component: CourseIdComponent },
       { path: '**', redirectTo: '/' },
     ],
   },

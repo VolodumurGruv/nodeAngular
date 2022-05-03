@@ -13,7 +13,7 @@ runDB();
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Headers", "origin, content-type, accept");
-  res.setHeader("Origin", "http://localhost:4200");
+  res.setHeader("Origin", "http://localhost:4200/create");
 
   next();
 });
@@ -35,7 +35,10 @@ app.use(cors());
 
 app.use("/api", router);
 
-app.listen(3000, () => console.log("Serve on port: 3000"));
+const server = app.listen(3200, () => {
+  // setTimeout(() => stopServer(), 120000);
+  console.log("Serve on port: 3200");
+});
 
 app.use((req, res, next) => {
   next(createError(404));
@@ -50,7 +53,17 @@ app.get("*", (req, res) => {
 });
 
 app.use(function (err, req, res, next) {
-  console.error(err.message);
+  console.error("node error message: ", err.message);
   if (!err.statusCode) err.statusCode = 500;
   res.status(err.statusCode).send(err.message);
 });
+
+function stopServer() {
+  process.on("SIGTERM", () => {
+    server.close(() => {
+      console.log("Process terminated");
+    });
+  });
+
+  process.kill(process.pid, "SIGTERM");
+}

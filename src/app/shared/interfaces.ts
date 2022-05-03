@@ -1,5 +1,7 @@
-export class User {
+export class Category {
   name: string;
-  surname: string;
-  id?: string;
+  product: string;
+  img: string;
+  description: string;
+  price: number;
 }

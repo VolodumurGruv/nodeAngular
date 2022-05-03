@@ -1,9 +1,36 @@
 <div class="create">
   <form [formGroup]="form" (ngSubmit)="submit()">
-    <label for="name">Name</label>
-    <input type="text" id="name" formControlName="name" />
-    <label for="surname">Surname</label>
-    <input type="text" id="surname" name="surname" formControlName="surname" />
-    <button type="submit" class="btn">Create</button>
+    <mat-form-field>
+      <mat-label for="name">Categoty name</mat-label>
+      <input matInput type="text" id="name" formControlName="name" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label for="product">Product</mat-label>
+      <input matInput type="text" id="product" formControlName="product" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label for="img">Img url</mat-label>
+      <input matInput type="text" id="img" formControlName="img" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label for="description">Description</mat-label>
+      <input
+        matInput
+        type="text"
+        id="description"
+        formControlName="description"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label for="price">Price</mat-label>
+      <input matInput type="number" id="price" formControlName="price" />
+    </mat-form-field>
+
+    <button mat-icon-button type="submit" class="btn">
+      <mat-icon>check</mat-icon>
+    </button>
+    <button mat-icon-button (click)="cancel()">
+      <mat-icon>cancel</mat-icon>
+    </button>
   </form>
 </div>

@@ -4,14 +4,15 @@
       <mat-list-item>
         <a matRipple [routerLink]="['/']">Home</a>
       </mat-list-item>
-      <mat-list-item mat-button [matMenuTriggerFor]="courses">
-        <a matRipple [routerLink]="['/courses']">Course</a>
+      <!-- mat-button [matMenuTriggerFor]="courses" add this line in tag bellow for triggering button -->
+      <mat-list-item>
+        <a matRipple [routerLink]="['/courses']">Courses</a>
       </mat-list-item>
-      <mat-menu #courses yPosition="above">
+      <!-- <mat-menu #courses yPosition="below">
         <mat-list-item>
           <a [routerLink]="['/course/:id']">HTML</a>
         </mat-list-item>
-      </mat-menu>
+      </mat-menu> -->
       <mat-list-item>
         <a matRipple [routerLink]="['/create']">Create</a>
       </mat-list-item>
